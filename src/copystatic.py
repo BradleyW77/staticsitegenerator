@@ -1,14 +1,14 @@
 import os
 import shutil
 
-def del_public():
-    if os.path.exists("./public"):
-        shutil.rmtree("./public")
-    os.mkdir("./public")
+def del_dir():
+    if os.path.exists("./docs"):
+        shutil.rmtree("./docs")
+    os.mkdir("./docs")
 
 copied_files = []
 
-def copy_dir(file_path="./static", dst_path="./public"):
+def copy_dir(file_path="./static", dst_path="./docs"):
     if os.path.exists(file_path):
         static_contents = os.listdir(file_path)
         for item in static_contents:
