@@ -20,8 +20,8 @@ class HTMLNode:
         return f"HTMLNode({self.tag}, {self.value}, children: {self.children}, {self.props})"
 
     def __eq__(self, other):
-        if self.tag == other.tag and self.value == other.value and self.children == other.children and self.props == other.props:
-            return True
+        if isinstance(other, HTMLNode):
+            return self.tag == other.tag and self.value == other.value and self.children == other.children and self.props == other.props
         return False
 
 class LeafNode(HTMLNode):
