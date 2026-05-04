@@ -1,7 +1,8 @@
-from textnode import TextType, TextNode
+from copystatic import del_public, copy_dir, get_copied_files
 
 def main():
-    text_node = TextNode("This is some test text.", TextType.LINK, "https://www.google.com")
-    print(text_node)
+    del_public()
+    copy_dir()
+    print(get_copied_files())
 
 main()
