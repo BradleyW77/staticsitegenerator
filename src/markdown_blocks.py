@@ -2,7 +2,7 @@ from enum import Enum
 
 from htmlnode import ParentNode, LeafNode
 from inline_markdown import text_to_textnodes
-from textnode import TextType, TextNode, text_node_to_html_node
+from textnode import text_node_to_html_node
 
 def markdown_to_blocks(markdown):
     blocks = markdown.split("\n\n")
@@ -87,3 +87,10 @@ def markdown_to_html_node(markdown):
     # Create a parent HTML node to wrap all the child nodes
     parent_html_node = ParentNode(tag="div", children=html_nodes)
     return parent_html_node
+
+def extract_title(markdown):
+    blocks = markdown_to_blocks(markdown)
+    for block in blocks:
+        if block.startswith("# "):
+            return block[2:]
+    raise ValueError("No title found in markdown")

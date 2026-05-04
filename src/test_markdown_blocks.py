@@ -1,7 +1,6 @@
-from platform import node
 import unittest
 
-from markdown_blocks import markdown_to_blocks, BlockType, block_to_block_type, markdown_to_html_node
+from markdown_blocks import markdown_to_blocks, BlockType, block_to_block_type, markdown_to_html_node, extract_title
 
 class TestMarkdownToBlocks(unittest.TestCase):
     def test_markdown_to_blocks(self):
@@ -135,6 +134,17 @@ This is another paragraph with _italic_ text and `code` here
         node = markdown_to_html_node(md)
         html = node.to_html()
         self.assertEqual(html, "<div></div>")
+
+class TestExtractTitle(unittest.TestCase):
+    def test_extract_title(self):
+        md = "# This is a title"
+        title = extract_title(md)
+        self.assertEqual(title, "This is a title")
+
+    def test_extract_title_no_title(self):
+        md = "This is not a title"
+        with self.assertRaises(ValueError):
+            extract_title(md)
 
 if __name__ == "__main__":
     unittest.main()
